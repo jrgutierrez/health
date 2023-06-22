@@ -2,8 +2,10 @@ import streamlit as st
 import plotly.express as px
 from data import get_data
 
-from google.oauth2 import service_account
-from gsheetsdb import connect
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
+
 
 st.set_page_config(layout="wide")
 
@@ -18,6 +20,32 @@ final_date = st.sidebar.date_input(
     data.index[-1])
 
 data = data.loc[initial_date:final_date]
+
+
+
+
+
+fig, ax = plt.figure(figsize = (16, 6))
+
+ax.plot(data.index, data['weight'], marker = 'o', color = 'green')
+
+ax.set_ylabel('Weight')
+ax.set_xlabel('Date')
+ax.set_xticks(rotation=45)
+
+ax.update_layout(legend=dict(
+    yanchor="top",
+    y=1.5,
+    xanchor="left",
+    x=0.01
+))
+
+st.plotly_chart(ax, use_container_width=True)
+
+
+
+
+
 
 fig = px.line(data, x = data.index, y = 'weight', markers = True)
 fig.update_layout(legend=dict(
