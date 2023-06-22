@@ -8,6 +8,13 @@ st.set_page_config(layout="wide")
 
 data = get_data()
 
+window = st.sidebar.radio(
+        "Select window 👇",
+        options=["Overview", "Moving Averages", "Forecasting"],
+    )
+
+print(window)
+
 initial_date = st.sidebar.date_input(
     "Selecciona fecha inicio",
     data.index[0])
@@ -16,10 +23,7 @@ final_date = st.sidebar.date_input(
     "Selecciona fecha fin",
     data.index[-1])
 
-st.sidebar.radio(
-        "Select window 👉",
-        options=["Overview", "Moving Averages", "Forecasting"],
-    )
+
 
 data = data.loc[initial_date:final_date]
 
