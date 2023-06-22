@@ -2,16 +2,12 @@ import streamlit as st
 import plotly.express as px
 from data import get_data
 
+from google.oauth2 import service_account
+from gsheetsdb import connect
+
 st.set_page_config(layout="wide")
 
-
-
-# Perform SQL query on the Google Sheet.
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
-#@st.cache_data(ttl=600)
-
 data = get_data()
-
 
 initial_date = st.sidebar.date_input(
     "Selecciona fecha inicio",
@@ -20,7 +16,6 @@ initial_date = st.sidebar.date_input(
 final_date = st.sidebar.date_input(
     "Selecciona fecha fin",
     data.index[-1])
-
 
 data = data.loc[initial_date:final_date]
 

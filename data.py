@@ -1,9 +1,15 @@
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
-    
+import gspread
+import streamlit as st
+
+
 def get_raw_data():
-    data = pd.read_csv('result/data.csv').rename(columns = {'Unnamed: 0': 'date'})
+    gc = gspread.service_account_from_dict(st.secrets["gcp_service_account"])
+    spreadsheet = gc.open_by_key(st.secrets["sheet_id"])
+    worksheet = spreadsheet.worksheet(st.secrets["sheet_name"])
+    data = pd.DataFrame(worksheet.get_all_records())
     data['date'] = pd.to_datetime(data['date'])
     return data.set_index('date').sort_index()
 
@@ -19,8 +25,6 @@ def prepare_data(data):
                                                  'muscle_mass': 'mean'})
     return data.reindex(pd.date_range(data.index[0], data.index[-1])).interpolate()
 
-def get_data(update = False):
-    if update: update_data()
+def get_data():
     data = get_raw_data()
-    data = prepare_data(data)
-    return data
+    return prepare_data(data)
