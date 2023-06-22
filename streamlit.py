@@ -31,7 +31,7 @@ ax.plot(data.index, data['weight'], marker = 'o', color = 'green')
 
 ax.set_ylabel('Weight')
 ax.set_xlabel('Date')
-ax.set_xticks(rotation=45)
+#ax.set_xticks(rotation=45)
 
 ax.update_layout(legend=dict(
     yanchor="top",
