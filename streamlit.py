@@ -22,7 +22,7 @@ final_date = st.sidebar.date_input(
 data = data.loc[initial_date:final_date]
 
 
-fig = px.line(data, x = data.index, y = 'weight', markers = True, color = 'green')
+fig = px.line(data, x = data.index, y = 'weight', markers = True, color = 'green', title = 'Weight evolution')
 st.plotly_chart(fig, use_container_width=True)
 
 fig = px.line(data, x = data.index, y = 'body_fat_rate', markers = True)
@@ -35,7 +35,7 @@ fig.update_layout(legend=dict(
 
 st.plotly_chart(fig, use_container_width=True)
 
-fig = px.line(data, x = data.index, y = 'muscle_mass', markers = True)
+fig = px.line(data, x = data.index, y = 'muscle_mass', markers = True, title = 'Muscle mass evolution')
 fig.update_layout(legend=dict(
     yanchor="top",
     y=1.5,
