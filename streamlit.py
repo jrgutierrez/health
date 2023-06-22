@@ -55,9 +55,9 @@ def ma_plots():
     n_roll = 4
     data_roll = data.rolling(n_roll).mean()
 
-    fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight evolution')
+    fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight - MA evolution')
     fig.add_scatter(x=data_roll.index, y=data_roll['weight'], mode='lines')
-    fig.update_traces(line_color='#00ff00')
+    fig.update_traces(line_color='#00ff00', showlegend=False)
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
     st.plotly_chart(fig, use_container_width=True)
 
