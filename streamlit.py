@@ -14,11 +14,11 @@ window = st.sidebar.radio(
     )
 
 initial_date = st.sidebar.date_input(
-    "Selecciona fecha inicio",
+    "Select initial date:",
     data.index[0])
 
 final_date = st.sidebar.date_input(
-    "Selecciona fecha fin",
+    "Select final date:",
     data.index[-1])
 
 
