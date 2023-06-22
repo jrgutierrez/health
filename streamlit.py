@@ -43,10 +43,10 @@ def plotly_dual_axis(data1,data2, title="", y1="", y2=""):
     fig2.update_traces(line_color='#ff0000', yaxis="y2")
     subplot_fig.add_traces(fig1.data + fig2.data)
     subplot_fig.update_layout(title=title, yaxis=dict(title=y1), yaxis2=dict(title=y2))
-    subplot_fig.for_each_trace(lambda t: t.update(line=dict(color=t.marker.color)))
+    #subplot_fig.for_each_trace(lambda t: t.update(line=dict(color=t.marker.color)))
     return subplot_fig
 
-fig = plotly_dual_axis(data['body_fat_rate'],data['muscle_mass'], title="Fat rate - Muscle mass evolution", y1="Fat rate", y2="Muscle mass")
+fig = plotly_dual_axis(data['body_fat_rate'], data['muscle_mass'], title = "Fat rate - Muscle mass evolution", y1 = "Fat rate", y2 = "Muscle mass")
 st.plotly_chart(fig, use_container_width=True)
 
 
