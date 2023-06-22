@@ -13,8 +13,6 @@ window = st.sidebar.radio(
         options=["Overview", "Moving Averages", "Forecasting"],
     )
 
-print(window)
-
 initial_date = st.sidebar.date_input(
     "Selecciona fecha inicio",
     data.index[0])
@@ -28,7 +26,7 @@ final_date = st.sidebar.date_input(
 data = data.loc[initial_date:final_date]
 
 
-fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight evolution')
+fig = px.line(data, x = data.index, y = 'weight', markers = True, title = window)
 fig.update_traces(line_color='#00ff00')
 fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
 st.plotly_chart(fig, use_container_width=True)
