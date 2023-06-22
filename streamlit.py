@@ -22,39 +22,7 @@ final_date = st.sidebar.date_input(
 data = data.loc[initial_date:final_date]
 
 
-
-
-
-fig, ax = plt.subplots(1, 1, figsize = (16, 6))
-
-ax.plot(data.index, data['weight'], marker = 'o', color = 'green')
-
-ax.set_ylabel('Weight')
-ax.set_xlabel('Date')
-#ax.set_xticks(rotation=45)
-
-fig.update_layout(legend=dict(
-    yanchor="top",
-    y=1.5,
-    xanchor="left",
-    x=0.01
-))
-
-st.plotly_chart(fig, use_container_width=True)
-
-
-
-
-
-
-fig = px.line(data, x = data.index, y = 'weight', markers = True)
-fig.update_layout(legend=dict(
-    yanchor="top",
-    y=1.5,
-    xanchor="left",
-    x=0.01
-))
-
+fig = px.line(data, x = data.index, y = 'weight', markers = True, color = 'green')
 st.plotly_chart(fig, use_container_width=True)
 
 fig = px.line(data, x = data.index, y = 'body_fat_rate', markers = True)
