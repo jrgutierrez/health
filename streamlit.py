@@ -95,7 +95,7 @@ def forecast(data, var, forecast_days = 15):
 def fc_plots():
     y_pred_out = forecast(data, 'weight')
     fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Muscle mass - MA evolution', color_discrete_sequence=['#00ff00'])
-    fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='lines', marker = {'symbol': '-dot'})
+    fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='lines', marker = {'symbol': 'circle'})
     fig.update_traces(showlegend=False)
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
     st.plotly_chart(fig, use_container_width=True)
