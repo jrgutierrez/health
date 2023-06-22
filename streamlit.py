@@ -61,6 +61,18 @@ def ma_plots():
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
     st.plotly_chart(fig, use_container_width=True)
 
+    fig = px.line(data, x = data.index, y = 'body_fat_rate', markers = True, title = 'Fat rate - MA evolution', color_discrete_sequence=['#00ff00'])
+    fig.add_scatter(x=data_roll.index, y=data_roll['body_fat_rate'], mode='lines')
+    fig.update_traces(showlegend=False)
+    fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Fat rate')
+    st.plotly_chart(fig, use_container_width=True)
+
+    fig = px.line(data, x = data.index, y = 'muscle_mass', markers = True, title = 'Muscle mass - MA evolution', color_discrete_sequence=['#00ff00'])
+    fig.add_scatter(x=data_roll.index, y=data_roll['muscle_mass'], mode='lines')
+    fig.update_traces(showlegend=False)
+    fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Muscle mass')
+    st.plotly_chart(fig, use_container_width=True)
+
 
 def fc_plots():
     pass
