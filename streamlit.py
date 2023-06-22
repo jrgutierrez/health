@@ -95,14 +95,14 @@ def forecast(data, var, forecast_days = 15):
 def fc_plots():
     y_pred_out = forecast(data, 'weight')
     fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight Forecast', color_discrete_sequence=['#00ff00'])
-    fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='markers+lines', marker = {'size': 8, 'symbol': 'circle'})
+    fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='markers+lines')
     fig.update_traces(showlegend=False)
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
     st.plotly_chart(fig, use_container_width=True)
 
     y_pred_out = forecast(data, 'body_fat_rate')
     fig = px.line(data, x = data.index, y = 'body_fat_rate', markers = True, title = 'Fat rate Forecast', color_discrete_sequence=['#00ff00'])
-    fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='markers+lines', marker = {'size': 8, 'symbol': 'circle'})
+    fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='markers+lines')
     fig.update_traces(showlegend=False)
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Fat rate')
     st.plotly_chart(fig, use_container_width=True)
