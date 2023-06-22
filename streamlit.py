@@ -35,19 +35,16 @@ def plotly_dual_axis(data1,data2, title="", y1="", y2=""):
     fig2.update_yaxes(title_font_color='#ff0000')
     subplot_fig.add_traces(fig1.data + fig2.data)
     subplot_fig.update_layout(title=title, yaxis=dict(title=y1), yaxis2=dict(title=y2))
+    newnames = {'body_fat_rate': 'Fat rate', 'muscle_mass': 'Muscle mass'}
+    subplot_fig.for_each_trace(lambda t: t.update(name = newnames[t.name], legendgroup = newnames[t.name], hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))
     #subplot_fig.for_each_trace(lambda t: t.update(line=dict(color=t.marker.color)))
     return subplot_fig
+
+
+
+                  )
 
 fig = plotly_dual_axis(data['body_fat_rate'], data['muscle_mass'], title = "Fat rate - Muscle mass evolution", y1 = "Fat rate", y2 = "Muscle mass")
 st.plotly_chart(fig, use_container_width=True)
 
 
-fig = px.line(data, x = data.index, y = 'muscle_mass', markers = True, title = 'Muscle mass evolution')
-fig.update_layout(legend=dict(
-    yanchor="top",
-    y=1.5,
-    xanchor="left",
-    x=0.01
-))
-
-st.plotly_chart(fig, use_container_width=True)
