@@ -42,7 +42,6 @@ def plotly_dual_axis(data1,data2, title="", y1="", y2=""):
     fig1.update_traces(line_color='#0000ff')
     fig2.update_traces(line_color='#ff0000', yaxis="y2")
     subplot_fig.add_traces(fig1.data + fig2.data)
-    subplot_fig.update_traces(line_color='#0000ff')
     subplot_fig.update_layout(title=title, yaxis=dict(title=y1), yaxis2=dict(title=y2))
     #subplot_fig.for_each_trace(lambda t: t.update(line=dict(color=t.marker.color)))
     return subplot_fig
