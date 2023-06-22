@@ -57,7 +57,7 @@ def ma_plots():
 
     fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight - MA evolution', color_discrete_sequence=['red'])
     fig.add_scatter(x=data_roll.index, y=data_roll['weight'], mode='lines')
-    fig.update_traces(line_color='#00ff00', showlegend=False)
+    fig.update_traces(showlegend=False)
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
     st.plotly_chart(fig, use_container_width=True)
 
