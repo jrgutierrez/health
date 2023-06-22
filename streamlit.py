@@ -1,10 +1,7 @@
 import streamlit as st
 import plotly.express as px
 from data import get_data
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set()
+from plotly.subplots import make_subplots
 
 
 st.set_page_config(layout="wide")
@@ -27,13 +24,6 @@ fig.update_traces(line_color='#00ff00')
 fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
 st.plotly_chart(fig, use_container_width=True)
 
-fig = px.line(data, x = data.index, y = ['body_fat_rate', 'muscle_mass'], markers = True)
-st.plotly_chart(fig, use_container_width=True)
-
-
-
-
-from plotly.subplots import make_subplots
 
 def plotly_dual_axis(data1,data2, title="", y1="", y2=""):
     subplot_fig = make_subplots(specs=[[{"secondary_y": True}]])
