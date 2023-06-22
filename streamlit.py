@@ -55,7 +55,7 @@ def ma_plots():
     n_roll = 4
     data_roll = data.rolling(n_roll).mean()
 
-    fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight - MA evolution', color_discrete_sequence=['green'])
+    fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight - MA evolution', color_discrete_sequence=['#00ff00'])
     fig.add_scatter(x=data_roll.index, y=data_roll['weight'], mode='lines')
     fig.update_traces(showlegend=False)
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
