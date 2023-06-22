@@ -25,7 +25,7 @@ data = data.loc[initial_date:final_date]
 
 
 
-fig, ax = plt.figure(figsize = (16, 6))
+fig, ax = plt.subplots(1, 1, figsize = (16, 6))
 
 ax.plot(data.index, data['weight'], marker = 'o', color = 'green')
 
