@@ -16,6 +16,11 @@ final_date = st.sidebar.date_input(
     "Selecciona fecha fin",
     data.index[-1])
 
+st.sidebar.radio(
+        "Select window 👉",
+        options=["Overview", "Moving Averages", "Forecasting"],
+    )
+
 data = data.loc[initial_date:final_date]
 
 
