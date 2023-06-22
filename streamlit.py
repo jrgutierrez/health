@@ -28,14 +28,40 @@ fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
 st.plotly_chart(fig, use_container_width=True)
 
 fig = px.line(data, x = data.index, y = ['body_fat_rate', 'muscle_mass'], markers = True)
-fig.update_layout(legend=dict(
-    yanchor="top",
-    y=1.5,
-    xanchor="left",
-    x=0.01
-))
+st.plotly_chart(fig, use_container_width=True)
+
+
+
+
+from plotly.subplots import make_subplots
+
+def plotly_dual_axis(data1,data2, title="", y1="", y2=""):
+    # Create subplot with secondary axis
+    subplot_fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    #Put Dataframe in fig1 and fig2
+    fig1 = px.line(data1)
+    fig2 = px.line(data2)
+    #Change the axis for fig2
+    fig2.update_traces(yaxis="y2")
+
+    #Add the figs to the subplot figure
+    subplot_fig.add_traces(fig1.data + fig2.data)
+
+    #FORMAT subplot figure
+    subplot_fig.update_layout(title=title, yaxis=dict(title=y1), yaxis2=dict(title=y2))
+
+    #RECOLOR so as not to have overlapping colors
+    subplot_fig.for_each_trace(lambda t: t.update(line=dict(color=t.marker.color)))
+
+
+    return subplot_fig
+
+
+fig = plotly_dual_axis(data['body_fat_rate'],data['muscle_mass'], title="", y1="", y2="")
 
 st.plotly_chart(fig, use_container_width=True)
+
 
 fig = px.line(data, x = data.index, y = 'muscle_mass', markers = True, title = 'Muscle mass evolution')
 fig.update_layout(legend=dict(
