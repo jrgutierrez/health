@@ -33,14 +33,14 @@ ax.set_ylabel('Weight')
 ax.set_xlabel('Date')
 #ax.set_xticks(rotation=45)
 
-ax.update_layout(legend=dict(
+fig.update_layout(legend=dict(
     yanchor="top",
     y=1.5,
     xanchor="left",
     x=0.01
 ))
 
-st.plotly_chart(ax, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
 
 
 
