@@ -89,7 +89,7 @@ def forecast(data, var, forecast_days = 15):
     y_pred_df = y_pred.conf_int(alpha = 0.05) 
     y_pred_df["Predictions"] = ARIMAmodel.predict(start = y_pred_df.index[0], end = y_pred_df.index[-1])
     y_pred_df.index = [data.index[-1] + timedelta(days = i) for i in range(forecast_days)]
-    return y_pred_df["Predictions"]
+    return y_pred_df
 
 
 def fc_plots():
