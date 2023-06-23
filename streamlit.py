@@ -2,7 +2,6 @@ import streamlit as st
 import plotly.express as px
 from data import get_data
 from plotly.subplots import make_subplots
-from datetime import timedelta
 
 
 st.set_page_config(layout="wide")
@@ -25,12 +24,12 @@ initial_date = st.sidebar.date_input(
     "Select initial date:",
     data.index[0],
     min_value=data.index[0], 
-    max_value=data.index[-2])
+    max_value=data.index[-1])
 
 final_date = st.sidebar.date_input(
     "Select final date:",
     data.index[-1],
-    min_value=initial_date + timedelta(days = 1), 
+    min_value=initial_date, 
     max_value=data.index[-1])
 
 
