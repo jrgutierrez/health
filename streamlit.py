@@ -13,7 +13,12 @@ window = st.sidebar.radio(
         options=["Overview", "Moving Averages", "Forecasting"],
     )
 
-st.sidebar.number_input('label', min_value=1, max_value=60, value=15)
+if window == 'Moving Averages':
+    n_ma = st.sidebar.number_input('Insert MA days:', min_value=1, max_value=20, value=4)
+
+if window == 'Forecasting':
+    n_fc = st.sidebar.number_input('Insert Forecasting days:', min_value=1, max_value=60, value=15)
+
 
 initial_date = st.sidebar.date_input(
     "Select initial date:",
@@ -54,8 +59,7 @@ def overview_plots():
 
 
 def ma_plots():
-    n_roll = 4
-    data_roll = data.rolling(n_roll).mean()
+    data_roll = data.rolling(n_ma).mean()
 
     fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight - MA evolution', color_discrete_sequence=['#00ff00'])
     fig.add_scatter(x=data_roll.index, y=data_roll['weight'], mode='lines')
@@ -95,14 +99,14 @@ def forecast(data, var, forecast_days = 15):
 
 
 def fc_plots():
-    y_pred_out = forecast(data, 'weight')
+    y_pred_out = forecast(data, 'weight', n_fc)
     fig = px.line(data, x = data.index, y = 'weight', markers = True, title = 'Weight Forecast', color_discrete_sequence=['#00ff00'])
     fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='markers+lines')
     fig.update_traces(showlegend=False)
     fig.update_layout(xaxis_title = 'Date', yaxis_title = 'Weight')
     st.plotly_chart(fig, use_container_width=True)
 
-    y_pred_out = forecast(data, 'body_fat_rate')
+    y_pred_out = forecast(data, 'body_fat_rate', n_fc)
     fig = px.line(data, x = data.index, y = 'body_fat_rate', markers = True, title = 'Fat rate Forecast', color_discrete_sequence=['#00ff00'])
     fig.add_scatter(x=y_pred_out.index, y=y_pred_out['Predictions'], mode='markers+lines')
     fig.update_traces(showlegend=False)
