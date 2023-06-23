@@ -13,6 +13,8 @@ window = st.sidebar.radio(
         options=["Overview", "Moving Averages", "Forecasting"],
     )
 
+st.number_input('label', min_value=1, max_value=60, value=15)
+
 initial_date = st.sidebar.date_input(
     "Select initial date:",
     data.index[0])
