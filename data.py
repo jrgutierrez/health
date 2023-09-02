@@ -21,7 +21,7 @@ def prepare_data(data):
             if 21 <= data['body_fat_rate'][i+1] < 22:
                 data['body_fat_rate'][i+1] = data['body_fat_rate'][i+1] + 6
     
-    data = data.groupby(lambda x: x.date).aggregate({'weight': 'mean', 'body_fat_rate': 'mean', 'muscle_mass': 'mean'})
+    data = data.groupby(lambda x: x.date).aggregate({'weight': 'mean()', 'body_fat_rate': 'mean()', 'muscle_mass': 'mean()'})
     return data.reindex(pd.date_range(data.index[0], data.index[-1])).interpolate()
 
 def get_data():
