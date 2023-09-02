@@ -2,8 +2,8 @@
 plotly==5.13.1
 pyparsing==3.1.1
 pandas
-gspread==5.9.0
+gspread
 gsheetsdb
-matplotlib==3.5.3
-seaborn==0.11.0
-statsmodels==0.13.5
+matplotlib
+seaborn
+statsmodels
